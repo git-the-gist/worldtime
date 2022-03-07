@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.App {
+	font-family: 'Montserrat', sans-serif;
+  	text-align: center;
+}
+
+.title {
+	position: fixed;
+	top: 15%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 8vw;
+	color: white;
+}
+
+.container {
+	position: fixed;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 55%;
+	height: 50%;
+	border: 1px solid;
+	border-color: white;
+	/*border-radius: 20%;*/
+	display: grid ;
+	align-items: center ;
+	grid-auto-flow: row ;
+	grid-auto-rows: 45% ; 
+	/*play with this to change height of the children, 50% will fill half*/
+	grid-template-columns: unset; 
+	/*do not set template columns and rows*/
+	grid-template-rows: unset;
+	overflow: auto;
+}
+
+.search {
+	color: white;
+	display: inline;
+}
+
+.addCity {
+	position: fixed;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 5%;
+	height: 5%;
+
+}
