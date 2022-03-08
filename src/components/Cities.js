@@ -26567,15 +26567,4 @@ export default
 {"city_ascii":"Timmiarmiut","lat":62.5333,"lng":-42.2167,"country":"Greenland","admin_name":"Kujalleq"},
 {"city_ascii":"Cheremoshna","lat":51.3894,"lng":30.0989,"country":"Ukraine","admin_name":"Kyyivs’ka Oblast’"},
 {"city_ascii":"Ambarchik","lat":69.651,"lng":162.3336,"country":"Russia","admin_name":"Sakha (Yakutiya)"},
-{"city_ascii":"Nordvik","lat":74.0165,"lng":111.51,"country":"Russia","admin_name":"Krasnoyarskiy Kray"}]
-
-// .map(function(item) {
-//     return item['city_ascii'] + ' | ' + item['admin_name'] + ' | ' + item['country'];
-//  }).toString().split(',')
-
-// .reduce(function(a,b){
-//     if (a.indexOf(b) < 0 ) {
-//     	a.push(b)
-//     };
-//     return a;
-//   },[]);
+{"city_ascii":"Nordvik","lat":74.0165,"lng":111.51,"country":"Russia","admin_name":"Krasnoyarskiy Kray"}];

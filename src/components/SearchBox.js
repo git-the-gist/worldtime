@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './searchbox.css';
-import Cities from './Cities';
+
 
 class SearchBox extends Component {
 	constructor(props) {
@@ -10,6 +10,8 @@ class SearchBox extends Component {
 			text: '',
 		};
 	}
+
+	// dynamically matching searchbox values to suggestions
 
 	onTextChanged = (e) => {
 		const { items } = this.props;
@@ -22,6 +24,8 @@ class SearchBox extends Component {
 		this.setState(() => ({ suggestions, text: value }));
 	}
 
+	// letting user select suggestion to fill searchbox
+
 	suggestionSelected (value) {
 		this.setState(() => ({
 			text: value,
@@ -30,6 +34,8 @@ class SearchBox extends Component {
 		const { text } = this.props;
 		console.log(value);
 	}
+
+	// dynamically rendering suggestions
 
 	renderSuggestions () {
 		const { suggestions } = this.state;

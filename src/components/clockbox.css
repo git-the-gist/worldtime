@@ -1,3 +1,6 @@
+
+/* css to complete */
+
 body {
 	background-color: black;
 	display: flex;
@@ -5,8 +8,6 @@ body {
 	overflow: hidden;
 
 }
-
-
 
 .clock {
 	width: 110px;

@@ -13,6 +13,8 @@ class Time extends Component {
 		}
 	}
 
+	// setting clock behavior based on api call
+
 	componentDidMount() {
 		const { loc } = this.props;
 
@@ -69,7 +71,9 @@ class Time extends Component {
 	
 
 	render() {
-		const { loc } = this.state;
+
+		// using fetched data to define country flag, city, weekday
+
 	    var date = new Date(this.state.data.formatted)
 	    var day = date.getDay();
 		var location = String(this.state.data.zoneName);
