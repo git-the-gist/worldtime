@@ -1,0 +1,44 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import "tailwindcss";
+
+
+
+.App {
+  font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.title {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8vw;
+  color: white;
+}
+
+.container {
+    background-image: 'url(/clock.svg)';
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  height: 50%;
+  border: 1px solid;
+  border-color: white;
+  display: grid ;
+  align-items: center ;
+  grid-auto-flow: row ;
+  grid-auto-rows: 45% ; 
+  grid-template-columns: unset; 
+  grid-template-rows: unset;
+  overflow: auto;
+}
+
+.map {
+  width: 500px;
+  height: 300px;
+  color: black;
+}
