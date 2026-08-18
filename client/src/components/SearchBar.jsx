@@ -3,12 +3,14 @@ import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import {  
   Search, 
+  Loader2,
 } from 'lucide-react';
 import { useErrors } from "../context/ErrorContext";
 
 export default function SearchBar( { addClock, addedLocations, darkMode } ) {
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+    const [loading, setLoading] = useState(false);
     const cancelSourceRef = useRef(null);
     const debounceTimerRef = useRef(null);
     const { addError } = useErrors();
@@ -25,8 +27,11 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
 
         if (!query.trim()) {
             setSuggestions([]);
+            setLoading(false);
             return;
         }
+
+        setLoading(true);
 
         debounceTimerRef.current = setTimeout(() => {
             const loadSuggestions = async () => {
@@ -51,6 +56,8 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
                     if (!axios.isCancel(err)) {
                         addError("There was an error performing your search.  Please try again later.");
                     }
+                } finally {
+                    setLoading(false);
                 }
             };
 
@@ -64,6 +71,7 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
             if (cancelSourceRef.current) {
                 cancelSourceRef.current.cancel('Component unmounted or query changed');
             }
+            setLoading(false);
         };
     }, [query])
 
@@ -83,6 +91,9 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
                 <div className="flex gap-4">
                     <div className={`relative z-50 flex-1 rounded-xl border transition-all ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-sm'}`}>
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                        {loading && (
+                            <Loader2 className={`absolute right-4 top-1/2 -translate-y-1/2 animate-spin ${darkMode ? 'text-slate-400' : 'text-slate-500'}`} size={18} />
+                        )}
                     <input 
                     type="text" 
                     value={query}
