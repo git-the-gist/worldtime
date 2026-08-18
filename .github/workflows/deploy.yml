@@ -39,6 +39,8 @@ jobs:
           push: true
           platforms: linux/arm64
           tags: ghcr.io/git-the-gist/worldtime-client:latest
+          build-args: |
+            VITE_MAPTILER_API_KEY=${{ secrets.VITE_MAPTILER_API_KEY }}
 
       - name: Build and push server
         uses: docker/build-push-action@v6
