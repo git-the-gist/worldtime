@@ -104,7 +104,7 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
                             setSuggestions([]);
                         }, 100);
                     }}/>
-                        <div className={`absolute top-full left-0 right-0 mt-2 max-h-[200px] overflow-y-auto rounded-xl border border-zinc-400 dark:border-slate-700 bg-white ${darkMode ?'dark:bg-slate-900':'bg-amber-50'} shadow-lg z-[9999]`}>
+                        <div className={`absolute top-full left-0 right-0 mt-2 max-h-[200px] overflow-y-auto rounded-xl shadow-xl z-[9999] ${darkMode ? 'bg-slate-900 border border-slate-600 text-slate-100' : 'bg-white border border-slate-300 text-slate-800'}`}>
                             {suggestions && suggestions.map((suggestion, i) => {
                                 const added = isAdded(suggestion);
                                 return (
@@ -114,7 +114,7 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
                                         className={`px-4 py-3 text-sm cursor-pointer transition-colors ${
                                             added
                                                 ? 'opacity-50 text-gray-400 cursor-not-allowed'
-                                                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+                                                : `${darkMode ? 'text-slate-200 hover:bg-slate-800' : 'text-slate-700 hover:bg-slate-200'}`
                                         }`}
                                     >
                                         {[suggestion.name, suggestion.state, suggestion.country].filter(Boolean).join(", ")}
