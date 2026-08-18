@@ -104,7 +104,7 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
                             setSuggestions([]);
                         }, 100);
                     }}/>
-                        <div className="absolute top-full left-0 right-0 mt-2 max-h-[200px] overflow-y-auto rounded-xl border border-zinc-400 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-lg z-[9999]">
+                        <div className={`absolute top-full left-0 right-0 mt-2 max-h-[200px] overflow-y-auto rounded-xl border border-zinc-400 dark:border-slate-700 bg-white ${darkMode ?'dark:bg-slate-900':'bg-amber-50'} shadow-lg z-[9999]`}>
                             {suggestions && suggestions.map((suggestion, i) => {
                                 const added = isAdded(suggestion);
                                 return (
