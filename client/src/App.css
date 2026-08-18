@@ -19,7 +19,6 @@
 }
 
 .container {
-    background-image: 'url(/clock.svg)';
   position: fixed;
   top: 70%;
   left: 50%;

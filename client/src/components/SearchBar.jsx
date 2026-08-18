@@ -71,7 +71,6 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
             if (cancelSourceRef.current) {
                 cancelSourceRef.current.cancel('Component unmounted or query changed');
             }
-            setLoading(false);
         };
     }, [query])
 
