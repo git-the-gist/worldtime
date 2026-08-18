@@ -1,6 +1,7 @@
 services:
 
   client:
+    restart: unless-stopped
     build:
       context: ./client
     ports:
@@ -9,6 +10,7 @@ services:
       - server
 
   server:
+    restart: unless-stopped
     build:
       context: ./server
     ports:
@@ -23,6 +25,7 @@ services:
 
   postgres:
     image: postgres:17-alpine
+    restart: unless-stopped
     environment:
       POSTGRES_HOST: ${POSTGRES_HOST}
       POSTGRES_USER: ${POSTGRES_USER}
