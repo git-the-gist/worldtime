@@ -19,7 +19,7 @@ const con = new Pool({
 server.get("/search", async (request, response) => {
   const city = request.query.city;
 
-  if (!city) {
+  if (!city || city.trim().length < 2) {
     return response.json([]);
   }
 
@@ -29,6 +29,7 @@ server.get("/search", async (request, response) => {
       FROM worldtime
       WHERE normalized_name ILIKE $1
       ORDER BY similarity(normalized_name, $2) DESC
+      LIMIT 10
     `;
 
     const values = [`%${city}%`, city];
