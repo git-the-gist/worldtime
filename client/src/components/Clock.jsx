@@ -6,8 +6,9 @@ export default function Clock({ location, deleteClock, darkMode }) {
   const lat = location.lat;
   const lng = location.lng;
   const city = location.name;
-  const country = location.country;
   const state = location.state;
+  const country = location.country;
+  const country_name = location.country_name;
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export default function Clock({ location, deleteClock, darkMode }) {
         <div
           className={`pt-4 border-t opacity-90 ${darkMode ? "border-slate-700" : "border-stone-300"}`}
         >
-          {`${city}, ${country}`}
+          {[city, state, country_name].filter(Boolean).join(", ")}
           <p className="text-xs font-medium opacity-80">Timezone: {timeZone}</p>
         </div>
         <div className="text-xs font-medium opacity-50">

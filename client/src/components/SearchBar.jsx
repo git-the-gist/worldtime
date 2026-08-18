@@ -111,7 +111,7 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
                                     <div
                                         key={i}
                                         onMouseDown={added ? undefined : (e) => { e.preventDefault(); onSuggestHandler(suggestion); }}
-                                        className={`px-4 py-3 text-sm cursor-pointer transition-colors ${
+                                        className={`px-4 py-3 text-sm text-left cursor-pointer transition-colors ${
                                             added
                                                 ? 'opacity-50 text-gray-400 cursor-not-allowed'
                                                 : `${darkMode ? 'text-slate-200 hover:bg-slate-800' : 'text-slate-700 hover:bg-slate-200'}`
