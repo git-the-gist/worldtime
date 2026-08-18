@@ -17,29 +17,72 @@ const con = new Pool({
 });
 
 server.get("/search", async (request, response) => {
-  const city = request.query.city;
+    const city = request.query.city?.trim();
 
-  if (!city || city.trim().length < 2) {
-    return response.json([]);
-  }
+    if (!city || city.length < 2) {
+        return response.json([]);
+    }
 
-  try {
-    const query = `
-      SELECT index, country, name, state, county, normalized_name, lat, lng
-      FROM worldtime
-      WHERE normalized_name ILIKE $1
-      ORDER BY similarity(normalized_name, $2) DESC
-      LIMIT 10
-    `;
+    try {
+       
+        const terms = city
+            .replace(/,/g, " ")
+            .split(/\s+/)
+            .filter(Boolean);
 
-    const values = [`%${city}%`, city];
-    const result = await con.query(query, values);
+        const conditions = [];
+        const values = [];
 
-    response.json(result.rows);
-  } catch (e) {
-    console.error(e);
-    response.status(500).json({ message: e.message });
-  }
+        terms.forEach((term, i) => {
+            values.push(`%${term}%`);
+
+            conditions.push(`
+                search_text ILIKE $${i + 1}
+            `);
+        });
+
+        const cityNameParameter = values.length + 1;
+        values.push(terms[0]);
+
+        const query = `
+            SELECT
+                index,
+                country,
+                name,
+                state,
+                county,
+                normalized_name,
+                country_name,
+                lat,
+                lng
+            FROM worldtime
+
+            WHERE ${conditions.join(" AND ")}
+
+            ORDER BY
+                CASE
+                    WHEN lower(name) = lower($${cityNameParameter})
+                    THEN 0
+                    ELSE 1
+                END,
+                name,
+                country_name,
+                state
+
+            LIMIT 15;
+        `;
+
+        const result = await con.query(query, values);
+
+        response.json(result.rows);
+
+    } catch (e) {
+        console.error(e);
+
+        response.status(500).json({
+            message: "Search failed"
+        });
+    }
 });
 
 async function startServer() {

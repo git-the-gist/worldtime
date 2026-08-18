@@ -117,7 +117,8 @@ export default function SearchBar( { addClock, addedLocations, darkMode } ) {
                                                 : `${darkMode ? 'text-slate-200 hover:bg-slate-800' : 'text-slate-700 hover:bg-slate-200'}`
                                         }`}
                                     >
-                                        {[suggestion.name, suggestion.state, suggestion.country].filter(Boolean).join(", ")}
+                                        <p>{suggestion.name}</p>
+                                        <p>{[suggestion.state, suggestion.country_name].filter(Boolean).join(", ")}</p>
                                     </div>
                                 );
                             })}
