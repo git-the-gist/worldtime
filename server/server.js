@@ -28,7 +28,12 @@ server.get("/search", async (request, response) => {
         const terms = city
             .replace(/,/g, " ")
             .split(/\s+/)
-            .filter(Boolean);
+            .filter(Boolean)
+            .map(term => term
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+            );
 
         const conditions = [];
         const values = [];
