@@ -70,6 +70,7 @@ server.get("/search", async (request, response) => {
                     THEN 0
                     ELSE 1
                 END,
+                similarity(normalized_name, $${cityNameParameter}) DESC,
                 name,
                 country_name,
                 state
